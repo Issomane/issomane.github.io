@@ -1,0 +1,107 @@
+---
+layout: default
+title: Blog
+description: Writing about design, development, and building things on the internet.
+permalink: /blog/
+---
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-label">Writing</div>
+      <h1 class="section-title">The Blog</h1>
+      <p class="section-subtitle">{{ page.description }}</p>
+    </div>
+
+    {% if site.posts.size > 0 %}
+
+      <!-- Featured post -->
+      {% assign featured = site.posts.first %}
+      <a href="{{ featured.url | relative_url }}" class="post-card" style="display:block; margin-bottom: var(--space-4); padding: var(--space-8);">
+        <div class="post-card-meta">
+          <span class="post-tag">Featured</span>
+          {% if featured.categories.first %}
+            <span class="post-tag">{{ featured.categories.first }}</span>
+          {% endif %}
+          <time class="post-date" datetime="{{ featured.date | date_to_xmlschema }}">
+            {{ featured.date | date: "%B %-d, %Y" }}
+          </time>
+        </div>
+        <h2 class="post-card-title" style="font-size:24px; margin-bottom: var(--space-3);">{{ featured.title }}</h2>
+        <p class="post-card-excerpt" style="-webkit-line-clamp:2;">{{ featured.excerpt | strip_html | truncate: 200 }}</p>
+        <div class="post-card-footer">
+          <span class="post-read-more">
+            Read article
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+          {% if featured.read_time %}
+            <span class="read-time">{{ featured.read_time }} min read</span>
+          {% endif %}
+        </div>
+      </a>
+
+      <!-- Remaining posts grid -->
+      {% if site.posts.size > 1 %}
+        <div class="posts-grid">
+          {% for post in site.posts offset:1 %}
+            <a href="{{ post.url | relative_url }}" class="post-card fade-up">
+              <div class="post-card-meta">
+                {% if post.categories.first %}
+                  <span class="post-tag">{{ post.categories.first }}</span>
+                {% endif %}
+                <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%b %-d, %Y" }}
+                </time>
+              </div>
+              <h3 class="post-card-title">{{ post.title }}</h3>
+              <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 130 }}</p>
+              <div class="post-card-footer">
+                <span class="post-read-more">
+                  Read more
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+                {% if post.read_time %}
+                  <span class="read-time">{{ post.read_time }} min</span>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    {% else %}
+      <div class="card" style="text-align:center; padding: var(--space-16);">
+        <p style="color: var(--text-secondary);">No posts yet. Create a file in <code>_posts/</code> to get started.</p>
+      </div>
+    {% endif %}
+
+    <!-- Pagination -->
+    {% if paginator.total_pages > 1 %}
+      <nav class="pagination" aria-label="Pagination">
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | relative_url }}" aria-label="Previous page">
+            ←
+          </a>
+        {% endif %}
+
+        {% for page in (1..paginator.total_pages) %}
+          {% if page == paginator.page %}
+            <span class="current">{{ page }}</span>
+          {% elsif page == 1 %}
+            <a href="{{ '/' | relative_url }}">{{ page }}</a>
+          {% else %}
+            <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | relative_url }}" aria-label="Next page">
+            →
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+
+  </div>
+</section>

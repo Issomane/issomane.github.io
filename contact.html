@@ -1,0 +1,66 @@
+---
+layout: default
+title: Contact
+description: Get in touch.
+permalink: /contact/
+---
+
+<section class="section">
+  <div class="container container--narrow">
+
+    <div class="section-header">
+      <div class="section-label">Contact</div>
+      <h1 class="section-title">Get in touch</h1>
+      <p class="section-subtitle">Have a question or want to work together? Send a message.</p>
+    </div>
+
+    <div class="card" style="padding: var(--space-8);">
+      <div class="card-glow"></div>
+
+      <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:500; color: var(--text-secondary); margin-bottom: var(--space-2); letter-spacing:-0.01em;">
+            Name
+          </label>
+          <input type="text" class="input" placeholder="Your name">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:500; color: var(--text-secondary); margin-bottom: var(--space-2); letter-spacing:-0.01em;">
+            Email
+          </label>
+          <input type="email" class="input" placeholder="you@example.com">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:500; color: var(--text-secondary); margin-bottom: var(--space-2); letter-spacing:-0.01em;">
+            Message
+          </label>
+          <textarea class="input" rows="6" placeholder="What's on your mind?" style="resize: vertical; line-height: 1.6;"></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end;">
+          <button class="btn btn-primary">
+            Send message
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="callout callout-info" style="margin-top: var(--space-6);">
+      <span class="callout-icon">💡</span>
+      <div class="callout-content">
+        This is a static site, so this form needs a backend service like
+        <strong>Formspree</strong>, <strong>Netlify Forms</strong>, or <strong>EmailJS</strong> to actually send messages.
+        Add your action URL to the form to activate it.
+      </div>
+    </div>
+
+  </div>
+</section>
